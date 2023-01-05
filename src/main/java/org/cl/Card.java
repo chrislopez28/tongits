@@ -5,14 +5,14 @@ import java.util.Map;
 public class Card {
     String suit;
     String value;
-    Map<String, String> suitMap = Map.of(
+    public static Map<String, String> suitMap = Map.of(
         "Clubs", "C",
         "Diamonds", "D",
         "Hearts", "H",
         "Spades", "S"
     );
 
-    Map<String, String> valueMap = Map.ofEntries(
+    public static Map<String, String> valueMap = Map.ofEntries(
             Map.entry("Ace", "A"),
             Map.entry("Two", "2"),
             Map.entry("Three", "3"),
@@ -40,6 +40,7 @@ public class Card {
     public String toStringFull() {
         return value + " of " + suit;
     }
+
     public static void main(String[] args) {
         System.out.println("org.cl.Card");
         Card x = new Card("Spades", "Ace");

@@ -6,6 +6,8 @@ public class Game {
     Deck deck;
     ArrayList<Player> players;
     int dealerIndex;
+    int turnIndex;
+    int moveNumber;
 
     public Game() {
         deck = new Deck();
@@ -13,6 +15,8 @@ public class Game {
 
         players = new ArrayList<Player>();
         dealerIndex = 0;
+        turnIndex = 0;
+        moveNumber = 1;
     }
 
     public void addPlayer(Player p) {
@@ -27,6 +31,34 @@ public class Game {
         }
 
         players.get(dealerIndex).hand.add(deck.dealCard());
+    }
+
+    public void incrementTurn() {
+        moveNumber++;
+        if (turnIndex == 2) {
+            turnIndex = 0;
+            return;
+        }
+
+        turnIndex++;
+    }
+
+    public void nextTurn() {
+        System.out.println();
+        System.out.println("*** Turn " + moveNumber + ": " + players.get(turnIndex).name + " ***");
+        incrementTurn();
+        pressEnterToContinue();
+    }
+
+    private void pressEnterToContinue()
+    {
+        System.out.println("Press Enter key to continue...");
+        try
+        {
+            System.in.read();
+        }
+        catch(Exception e)
+        {}
     }
 
     public static void main(String[] args) {
@@ -47,5 +79,13 @@ public class Game {
 
         System.out.println(game.deck.getCards());
 
+        for (Player player : game.players) {
+            player.orderHandByValue();
+            player.printStatus();
+        }
+
+        while (true) {
+            game.nextTurn();
+        }
     }
 }
