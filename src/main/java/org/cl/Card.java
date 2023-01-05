@@ -1,5 +1,6 @@
 package org.cl;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 public class Card {
@@ -39,6 +40,22 @@ public class Card {
 
     public String toStringFull() {
         return value + " of " + suit;
+    }
+
+    public static ArrayList<Card> orderCardsByValue(ArrayList<Card> cards) {
+        ArrayList<Card> newList = new ArrayList<Card>();
+
+        for (String cardValue : new String[]{"Two", "Three", "Four", "Five", "Six", "Seven",
+                "Eight", "Nine", "Ten", "Jack", "Queen", "King", "Ace"
+        }) {
+            for (Card card : cards) {
+                if (card.value == cardValue) {
+                    newList.add(card);
+                }
+            }
+        }
+
+        return newList;
     }
 
     public static void main(String[] args) {
