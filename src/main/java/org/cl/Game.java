@@ -209,7 +209,6 @@ public class Game {
         }
 
         while (true) {
-            System.out.println(isMeld(game.deck.getCards()));
             game.nextTurn();
         }
     }
